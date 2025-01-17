@@ -15,12 +15,10 @@ This repository is organized to make navigation and learning as seamless as poss
 ## 🗂 Folder Structure
 ```plaintext
 .
-├── Day_1_Problem_Name/
+├── Day_1/
 │   ├── solution.cpp
-│   ├── problem_description.md
 │   └── notes.md
-├── Day_2_Problem_Name/
+├── Day_2/
 │   ├── solution.cpp
-│   ├── problem_description.md
 │   └── notes.md
 └── README.md
