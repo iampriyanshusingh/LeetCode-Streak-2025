@@ -1,0 +1,36 @@
+class Solution {
+public:
+    vector<int> lexicographicallySmallestArray(vector<int>& nums, int limit) {
+        int n = nums.size();
+        vector<int> temp(nums); // Copy nums into temp
+        sort(temp.begin(), temp.end()); // Sort temp
+        
+        vector<deque<int>> groups;
+        unordered_map<int, int> groupIndexMap;
+        int groupIndex = 0;
+
+        // Initialize the first group
+        groups.emplace_back();
+        groups[groupIndex].push_back(temp[0]);
+        groupIndexMap[temp[0]] = groupIndex;
+
+        for (int i = 1; i < n; i++) {
+            // Check if the difference exceeds the limit
+            if (temp[i] - groups[groupIndex].back() > limit) {
+                groupIndex++; // Create a new group
+                groups.emplace_back();
+            }
+            groupIndexMap[temp[i]] = groupIndex;
+            groups[groupIndex].push_back(temp[i]);
+        }
+
+        // Reconstruct the original array with lexicographically smallest order
+        for (int i = 0; i < n; i++) {
+            int gi = groupIndexMap[nums[i]]; // Get the group index
+            nums[i] = groups[gi].front(); // Use the front of the deque
+            groups[gi].pop_front(); // Remove the used element
+        }
+
+        return nums;
+    }
+};
