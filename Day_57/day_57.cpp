@@ -13,3 +13,5 @@ class Solution {
             return max_point - min_point;
         }
     };
+
+    //mistakes happen
